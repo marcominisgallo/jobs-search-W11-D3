@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import Job from "./Job";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { addToFavorites } from "../redux/action";
 
 const CompanySearchResults = () => {
   const [jobs, setJobs] = useState([]);
@@ -38,12 +39,7 @@ const CompanySearchResults = () => {
           <h1 className="display-4">Job posting for: {params.company}</h1>{" "}
           <Button
             onClick={() => {
-              dispatch({
-                type: "ADD_TO_FAVOURITES",
-                payload: {
-                  company: params.company,
-                },
-              });
+              dispatch(addToFavorites({ company: params.company }));
             }}
           >
             Add to favourites
